@@ -152,10 +152,6 @@ open class SuperDelegate: NSObject, UIApplicationDelegate {
             return false
         }
         
-        if self is RemoteNotificationCapable {
-            application.registerForRemoteNotifications()
-        }
-        
         if let launchBluetoothPeripheralIdentifiers = launchOptions?[UIApplicationLaunchOptionsKey.bluetoothPeripherals] as? [String] {
             guard let backgroundBluetoothPeripheralCapableSelf = self as? BackgroundBluetoothPeripheralCapable else {
                 noteImproperAPIUsage("Received background bluetooth peripheral restore identifier but \(self) does not conform to BackgroundBluetoothPeripheralCapable. Failing to launch app.")
